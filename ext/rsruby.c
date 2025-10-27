@@ -154,7 +154,8 @@ VALUE rr_init(VALUE self, VALUE r_argv){
 
   // Initialize the list of protected objects
   R_References = R_NilValue;
-  SET_SYMVALUE(install("R.References"), R_References);
+  // SET_SYMVALUE(install("R.References"), R_References);
+  Rf_defineVar(install("R.References"), R_References);
 
   for (i = 0; i < argc; i++)
     free(argv[i]);
