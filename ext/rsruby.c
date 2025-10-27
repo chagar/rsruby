@@ -154,8 +154,13 @@ VALUE rr_init(VALUE self, VALUE r_argv){
 
   // Initialize the list of protected objects
   R_References = R_NilValue;
-  // SET_SYMVALUE(install("R.References"), R_References);
-  Rf_defineVar(install("R.References"), R_References);
+
+  // Was: SET_SYMVALUE(install("R.References"), R_References);
+  // See also:
+  // * https://github.com/JuliaInterop/RCall.jl/pull/564
+  // * https://stackoverflow.com/a/26354878/9086755
+  // * https://cran.r-project.org/doc/manuals/r-release/R-exts.html (for R version 4.5.1)
+  Rf_defineVar(install("R.References"), R_References, _R_GlobalEnv);
 
   for (i = 0; i < argc; i++)
     free(argv[i]);
