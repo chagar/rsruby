@@ -155,7 +155,9 @@ VALUE rr_init(VALUE self, VALUE r_argv){
   // Initialize the list of protected objects
   R_References = R_NilValue;
 
+  // Changed call of SET_SYMVALUE To Rf_defineVar.
   // Was: SET_SYMVALUE(install("R.References"), R_References);
+  // "R 4.5 introduced...stricter internal vs. external API boundaries"
   // See also:
   // * https://github.com/JuliaInterop/RCall.jl/pull/564
   // * https://stackoverflow.com/a/26354878/9086755
